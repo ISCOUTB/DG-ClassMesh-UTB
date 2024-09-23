@@ -3,8 +3,7 @@ from config.db import Base
 
 class User(Base):
     __tablename__ = 'users'
-    
-    codigo = Column(Integer, primary_key=True, index=True)
+    id = Column(String(10), primary_key=True, index=True)
     first_name = Column(String(50), nullable=False)
     last_name = Column(String(50), nullable=False)
     email = Column(String(100), unique=True, index=True, nullable=False)

@@ -4,7 +4,6 @@ from config.db import Base
 
 class Faculty(Base):
     __tablename__ = 'faculties'
-    id = Column(Integer, primary_key=True, index=True)      
+    id = Column(String(8), primary_key=True, index=True)      
     name = Column(String(100), unique=True, nullable=False) 
-
     courses = relationship('Course', back_populates='faculty')
