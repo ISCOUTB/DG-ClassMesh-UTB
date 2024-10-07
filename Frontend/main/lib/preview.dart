@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'schedule.dart'; // Importa el archivo schedule.dart
 
 void main() {
@@ -15,7 +16,7 @@ class ClassMeshApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const ClassMeshHome(),
-        '/schedule': (context) => const SchedulePage(),
+        '/schedule': (context) => const HorarioScreen(),
       },
     );
   }
@@ -164,12 +165,45 @@ class _ClassMeshHomeState extends State<ClassMeshHome> {
               onPressed: () {},
             ),
             const CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.jpg'),
+              backgroundImage: AssetImage('assets/icon.png'),
             ),
           ],
         ),
       ),
-      // ... (Drawer code)
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 19, 9, 155),
+              ),
+              child: Text(
+                'Menú',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Inicio'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Configuración'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            // Agrega más opciones aquí
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: GridView.builder(

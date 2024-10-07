@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'Iniciar sesión con Microsoft 365',
+                    'Presione aqui para generar horarios',
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
