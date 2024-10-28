@@ -1,34 +1,13 @@
 import 'package:flutter/material.dart';
-import 'schedule.dart'; // Importa el archivo schedule.dart
 
-void main() {
-  runApp(const ClassMeshApp());
-}
-
-class ClassMeshApp extends StatelessWidget {
-  const ClassMeshApp({super.key});
+class ClassMeshPreview extends StatefulWidget {
+  const ClassMeshPreview({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const ClassMeshHome(),
-        '/schedule': (context) => const HorarioScreen(),
-      },
-    );
-  }
+  State<ClassMeshPreview> createState() => _ClassMeshPreviewState();
 }
 
-class ClassMeshHome extends StatefulWidget {
-  const ClassMeshHome({super.key});
-
-  @override
-  State<ClassMeshHome> createState() => _ClassMeshHomeState();
-}
-
-class _ClassMeshHomeState extends State<ClassMeshHome> {
+class _ClassMeshPreviewState extends State<ClassMeshPreview> {
   final List<Map<String, dynamic>> _schedules = List.generate(4, (index) {
     return {
       'name': 'Horario #${index + 1}',
@@ -37,60 +16,46 @@ class _ClassMeshHomeState extends State<ClassMeshHome> {
   });
   final String _searchTerm = "";
 
-  Widget _buildDrawerItem(IconData icon, String title, BuildContext context) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      onTap: () {
-        Navigator.pop(context);
-        if (title == 'Horarios') {
-          Navigator.pushNamed(context, '/schedule');
-        }
+  void _showDeleteConfirmationDialog(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Eliminar horario?'),
+          content: Text(
+            '¿Estás seguro de que deseas eliminar "${_schedules[index]['name']}"? Esta acción no se puede deshacer.',
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
+              onPressed: () {
+                setState(() {
+                  // Eliminar el elemento de la lista
+                  _schedules.removeAt(index);
+
+                  // Reorganizar los nombres para reflejar las nuevas posiciones
+                  for (int i = 0; i < _schedules.length; i++) {
+                    _schedules[i]['name'] = 'Horario #${i + 1}';
+                  }
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                'Eliminar',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        );
       },
     );
   }
-
-  void _showDeleteConfirmationDialog(int index) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Eliminar horario?'),
-        content: Text(
-          '¿Estás seguro de que deseas eliminar "${_schedules[index]['name']}"? Esta acción no se puede deshacer.',
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancelar'),
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.red,
-            ),
-            onPressed: () {
-              setState(() {
-                // Eliminar el elemento de la lista
-                _schedules.removeAt(index);
-                
-                // Reorganizar los nombres para reflejar las nuevas posiciones
-                for (int i = 0; i < _schedules.length; i++) {
-                  _schedules[i]['name'] = 'Horario #${i + 1}';
-                }
-              });
-              Navigator.of(context).pop();
-            },
-            child: const Text(
-              'Eliminar',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
-      );
-    },
-  );
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -111,29 +76,6 @@ class _ClassMeshHomeState extends State<ClassMeshHome> {
                 height: screenSize.height * 0.05,
               ),
             ),
-          ],
-        ),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 19, 9, 155),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    'assets/logo_alt.png',
-                    height: screenSize.height * 0.05,
-                  ),
-                ],
-              ),
-            ),
-            _buildDrawerItem(Icons.home, 'Inicio', context),
-            _buildDrawerItem(Icons.schedule, 'Horarios', context),
           ],
         ),
       ),

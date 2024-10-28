@@ -17,18 +17,30 @@ class Schedule {
 
 class Course {
   final String courseTitle;
+  final String abbreviation; // Campo para las siglas
   final List<Schedule> schedule;
   final Color color;
 
-  Course({required this.courseTitle, required this.schedule, required this.color});
+  Course({
+    required this.courseTitle,
+    required this.abbreviation, // Inicialización del campo de siglas
+    required this.schedule,
+    required this.color,
+  });
 }
 
 class ScheduleWithCourse {
   final String courseTitle;
+  final String abbreviation; // Nuevo campo para almacenar las siglas
   final Schedule schedule;
   final Color color;
 
-  ScheduleWithCourse({required this.courseTitle, required this.schedule, required this.color});
+  ScheduleWithCourse({
+    required this.courseTitle,
+    required this.abbreviation, // Inicialización del campo de siglas
+    required this.schedule,
+    required this.color,
+  });
 }
 
 class Faculty {
@@ -44,23 +56,133 @@ List<Faculty> faculties = [
     courses: [
       Course(
         courseTitle: "Fundamentos de Programación",
+        abbreviation: "FDP",
         schedule: [
           Schedule(days: ["Lunes"], startTime: "08:00", endTime: "10:00"),
           Schedule(days: ["Miércoles"], startTime: "14:00", endTime: "16:00"),
+          Schedule(days: ["Viernes"], startTime: "10:00", endTime: "12:00"),
         ],
         color: Colors.orange,
       ),
       Course(
         courseTitle: "Estructuras de Datos",
+        abbreviation: "EDD",
         schedule: [
           Schedule(days: ["Martes"], startTime: "09:00", endTime: "11:00"),
           Schedule(days: ["Lunes"], startTime: "15:00", endTime: "17:00"),
+          Schedule(days: ["Jueves"], startTime: "08:00", endTime: "10:00"),
         ],
         color: Colors.green,
+      ),
+      Course(
+        courseTitle: "Sistemas Operativos",
+        abbreviation: "SO",
+        schedule: [
+          Schedule(days: ["Jueves"], startTime: "10:00", endTime: "12:00"),
+          Schedule(days: ["Viernes"], startTime: "14:00", endTime: "16:00"),
+          Schedule(days: ["Martes"], startTime: "12:00", endTime: "14:00"),
+        ],
+        color: Colors.blue,
+      ),
+    ],
+  ),
+  Faculty(
+    name: "Facultad de Humanidades",
+    courses: [
+      Course(
+        courseTitle: "Historia del Arte",
+        abbreviation: "HDA",
+        schedule: [
+          Schedule(days: ["Lunes"], startTime: "11:00", endTime: "13:00"),
+          Schedule(days: ["Miércoles"], startTime: "14:00", endTime: "16:00"),
+          Schedule(days: ["Viernes"], startTime: "12:00", endTime: "14:00"),
+        ],
+        color: Colors.lime,
+      ),
+      Course(
+        courseTitle: "Ética",
+        abbreviation: "ETI",
+        schedule: [
+          Schedule(days: ["Martes"], startTime: "10:00", endTime: "12:00"),
+          Schedule(days: ["Jueves"], startTime: "11:00", endTime: "13:00"),
+          Schedule(days: ["Viernes"], startTime: "15:00", endTime: "17:00"),
+        ],
+        color: Colors.indigo,
+      ),
+      Course(
+        courseTitle: "Comprensión Lectora",
+        abbreviation: "CLE",
+        schedule: [
+          Schedule(days: ["Viernes"], startTime: "14:00", endTime: "16:00"),
+          Schedule(days: ["Martes"], startTime: "12:00", endTime: "14:00"),
+          Schedule(days: ["Lunes"], startTime: "10:00", endTime: "12:00"),
+        ],
+        color: Colors.amber,
+      ),
+    ],
+  ),
+  Faculty(
+    name: "Facultad de Ciencias Básicas",
+    courses: [
+      Course(
+        courseTitle: "Matemáticas Básicas",
+        abbreviation: "MATB",
+        schedule: [
+          Schedule(days: ["Lunes"], startTime: "09:00", endTime: "11:00"),
+          Schedule(days: ["Miércoles"], startTime: "14:00", endTime: "16:00"),
+          Schedule(days: ["Viernes"], startTime: "10:00", endTime: "12:00"),
+        ],
+        color: Colors.yellow,
+      ),
+      Course(
+        courseTitle: "Física Calor y Ondas",
+        abbreviation: "FICO",
+        schedule: [
+          Schedule(days: ["Martes"], startTime: "08:00", endTime: "10:00"),
+          Schedule(days: ["Jueves"], startTime: "13:00", endTime: "15:00"),
+          Schedule(days: ["Viernes"], startTime: "11:00", endTime: "13:00"),
+        ],
+        color: Colors.teal,
+      ),
+      Course(
+        courseTitle: "Química General",
+        abbreviation: "QUIG",
+        schedule: [
+          Schedule(days: ["Lunes"], startTime: "14:00", endTime: "16:00"),
+          Schedule(days: ["Miércoles"], startTime: "08:00", endTime: "10:00"),
+          Schedule(days: ["Viernes"], startTime: "15:00", endTime: "17:00"),
+        ],
+        color: Colors.pink,
+      ),
+    ],
+  ),
+  Faculty(
+    name: "Facultad de Humanidades de Lenguas Extranjeras",
+    courses: [
+      Course(
+        courseTitle: "Inglés IV",
+        abbreviation: "ING4",
+        schedule: [
+          Schedule(days: ["Lunes"], startTime: "08:00", endTime: "10:00"),
+          Schedule(days: ["Miércoles"], startTime: "14:00", endTime: "16:00"),
+          Schedule(days: ["Viernes"], startTime: "12:00", endTime: "14:00"),
+        ],
+        color: Colors.cyan,
+      ),
+      Course(
+        courseTitle: "Francés III",
+        abbreviation: "FR3",
+        schedule: [
+          Schedule(days: ["Martes"], startTime: "10:00", endTime: "12:00"),
+          Schedule(days: ["Jueves"], startTime: "13:00", endTime: "15:00"),
+          Schedule(days: ["Viernes"], startTime: "09:00", endTime: "11:00"),
+        ],
+        color: Colors.purple,
       ),
     ],
   ),
 ];
+
 
 class _HorarioScreenState extends State<HorarioScreen> {
   String? selectedFaculty;
@@ -91,18 +213,6 @@ class _HorarioScreenState extends State<HorarioScreen> {
           ],
         ),
       ),
-      drawer: isMobile
-          ? Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  _buildDrawerHeader(screenSize),
-                  _buildDrawerItem(Icons.home, 'Inicio', context),
-                  _buildDrawerItem(Icons.schedule, 'Horarios', context),
-                ],
-              ),
-            )
-          : null,
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (isMobile || orientation == Orientation.portrait) {
@@ -124,33 +234,6 @@ class _HorarioScreenState extends State<HorarioScreen> {
           }
         },
       ),
-    );
-  }
-
-  Widget _buildDrawerHeader(Size screenSize) {
-    return DrawerHeader(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 19, 9, 155),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(
-            'assets/logo_alt.png',
-            height: screenSize.height * 0.05,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDrawerItem(IconData icon, String title, BuildContext context) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      onTap: () {
-        Navigator.pop(context);
-      },
     );
   }
 
@@ -289,86 +372,93 @@ class _HorarioScreenState extends State<HorarioScreen> {
     );
   }
 
-Widget _buildTimetable() {
-  List<String> days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
-  return LayoutBuilder(
-    builder: (context, constraints) {
-      // Ajustar el childAspectRatio para dar más altura a las columnas de cada día
-      double aspectRatio = constraints.maxWidth / (constraints.maxHeight / 0.1); 
+  Widget _buildTimetable() {
+    List<String> days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double aspectRatio = constraints.maxWidth / (constraints.maxHeight / 0.1);
 
-      return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: days.length, // Una columna por cada día
-          childAspectRatio: aspectRatio, // Más alto que ancho
-          crossAxisSpacing: constraints.maxWidth * 0.02, // Espacio horizontal entre columnas
-          mainAxisSpacing: constraints.maxHeight * 0.02, // Espacio vertical entre filas
-        ),
-        itemCount: days.length,
-        itemBuilder: (context, index) {
-          String day = days[index];
-          return _buildDayColumn(day);
-        },
-      );
-    },
-  );
-}
-
-Widget _buildDayColumn(String day) {
-  List<Widget> events = [];
-
-  if (generatedSchedules.isNotEmpty) {
-    List<ScheduleWithCourse> currentCombination =
-        generatedSchedules[currentScheduleIndex];
-
-    // Filtrar y agregar los eventos del día
-    currentCombination
-        .where((s) => s.schedule.days.contains(day))
-        .forEach((scheduleWithCourse) {
-      events.add(Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.01,
-          vertical: MediaQuery.of(context).size.height * 0.005,
-        ),
-        padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
-        decoration: BoxDecoration(
-          color: scheduleWithCourse.color,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              scheduleWithCourse.courseTitle,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              '${scheduleWithCourse.schedule.startTime} - ${scheduleWithCourse.schedule.endTime}',
-              style: const TextStyle(color: Colors.white),
-            ),
-          ],
-        ),
-      ));
-    });
+        return GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: days.length,
+            childAspectRatio: aspectRatio,
+            crossAxisSpacing: constraints.maxWidth * 0.02,
+            mainAxisSpacing: constraints.maxHeight * 0.02,
+          ),
+          itemCount: days.length,
+          itemBuilder: (context, index) {
+            String day = days[index];
+            return _buildDayColumn(day);
+          },
+        );
+      },
+    );
   }
 
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(day, style: const TextStyle(fontWeight: FontWeight.bold)),
-      const SizedBox(height: 8),
-      // Usar Expanded para ocupar el espacio disponible verticalmente
-      Expanded(
-        child: ListView(
-          padding: EdgeInsets.zero, // Quitar padding para maximizar el uso de espacio
-          children: events,
-        ),
-      ),
-    ],
-  );
-}
+  Widget _buildDayColumn(String day) {
+    List<Widget> events = [];
 
+    if (generatedSchedules.isNotEmpty) {
+      List<ScheduleWithCourse> currentCombination =
+          generatedSchedules[currentScheduleIndex];
+
+      // Filtrar los eventos del día y ordenarlos por la hora de inicio
+      List<ScheduleWithCourse> dayEvents = currentCombination
+          .where((s) => s.schedule.days.contains(day))
+          .toList();
+
+      // Ordenar los eventos por la hora de inicio
+      dayEvents.sort((a, b) {
+        DateTime startTimeA = _timeStringToDateTime(a.schedule.startTime);
+        DateTime startTimeB = _timeStringToDateTime(b.schedule.startTime);
+        return startTimeA.compareTo(startTimeB);
+      });
+
+      // Agregar los eventos ordenados al widget
+      for (var scheduleWithCourse in dayEvents) {
+        events.add(Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.005,
+            vertical: MediaQuery.of(context).size.height * 0.005,
+          ),
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
+          decoration: BoxDecoration(
+            color: scheduleWithCourse.color,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                scheduleWithCourse.abbreviation, // Mostrar las siglas en el horario generado
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                '${scheduleWithCourse.schedule.startTime} - ${scheduleWithCourse.schedule.endTime}',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ));
+      }
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(day, style: const TextStyle(fontWeight: FontWeight.bold)),
+        const SizedBox(height: 8),
+        Expanded(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: events,
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _buildNavigationButtons() {
     return Row(
@@ -423,23 +513,44 @@ Widget _buildDayColumn(String day) {
             content: Text('¿Estás seguro de que deseas agregar "$selectedCourse"?'),
             actions: [
               TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 onPressed: () {
                   setState(() {
-                    selectedCourses.add(faculties
+                    var selected = faculties
                         .firstWhere((f) => f.name == selectedFaculty)
                         .courses
-                        .firstWhere((c) => c.courseTitle == selectedCourse));
+                        .firstWhere((c) => c.courseTitle == selectedCourse);
+                    selectedCourses.add(selected);
                     selectedCourse = null;
                   });
                   Navigator.of(context).pop();
                 },
-                child: const Text('Sí'),
+                child: const Text(
+                  'Sí',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                ),
               ),
               TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text('No'),
+                child: const Text(
+                  'No',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           );
@@ -503,11 +614,12 @@ Widget _buildDayColumn(String day) {
 
     for (var schedule in courses[index].schedule) {
       currentCombination.add(ScheduleWithCourse(
-          courseTitle: courses[index].courseTitle,
-          schedule: schedule,
-          color: courses[index].color));
-      _combineSchedulesRecursive(
-          index + 1, courses, currentCombination, validCombinations);
+        courseTitle: courses[index].courseTitle,
+        abbreviation: courses[index].abbreviation, // Agregamos las siglas al generar la combinación
+        schedule: schedule,
+        color: courses[index].color,
+      ));
+      _combineSchedulesRecursive(index + 1, courses, currentCombination, validCombinations);
       currentCombination.removeLast();
     }
   }
@@ -544,6 +656,7 @@ Widget _buildDayColumn(String day) {
     return DateTime(DateTime.now().year, DateTime.now().month,
         DateTime.now().day, hour, minute);
   }
+
   Widget _buildMobileViewContent() {
     return Column(
       children: [
