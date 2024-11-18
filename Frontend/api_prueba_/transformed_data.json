@@ -1,0 +1,187 @@
+[
+    {
+        "name": "FUNDAMENTOS DE ADMINISTRACION",
+        "course_number": "G01A",
+        "profesor": "MARTHA PATRICIA CASTRO PORTO",
+        "faculty_id": "aemp",
+        "id": 62604,
+        "schedules": [
+            {
+                "day_of_week": "Viernes",
+                "start_time": "09:00:00",
+                "end_time": "10:50:00"
+            },
+            {
+                "day_of_week": "Martes",
+                "start_time": "16:00:00",
+                "end_time": "16:50:00"
+            }
+        ]
+    },
+    {
+        "name": "SEMINARIO GERENCIAL I",
+        "course_number": "G02A",
+        "profesor": "RICARDO ANDRES ABREO RODRIGUEZ",
+        "faculty_id": "aemp",
+        "id": 63125,
+        "schedules": [
+            {
+                "day_of_week": "Lunes",
+                "start_time": "16:00:00",
+                "end_time": "16:50:00"
+            }
+        ]
+    },
+    {
+        "name": "HISTORIA EMPRESARIAL",
+        "course_number": "G03A",
+        "profesor": "MARIA TERESA RIPOLL DE LEMAITRE",
+        "faculty_id": "aemp",
+        "id": 62607,
+        "schedules": [
+            {
+                "day_of_week": "Lunes",
+                "start_time": "07:00:00",
+                "end_time": "08:50:00"
+            },
+            {
+                "day_of_week": "Jueves",
+                "start_time": "10:00:00",
+                "end_time": "10:50:00"
+            }
+        ]
+    },
+    {
+        "name": "HISTORIA EMPRESARIAL",
+        "course_number": "G03A",
+        "profesor": "MARIA TERESA RIPOLL DE LEMAITRE",
+        "faculty_id": "aemp",
+        "id": 63818,
+        "schedules": [
+            {
+                "day_of_week": "Lunes",
+                "start_time": "09:00:00",
+                "end_time": "09:50:00"
+            },
+            {
+                "day_of_week": "Jueves",
+                "start_time": "11:00:00",
+                "end_time": "12:50:00"
+            }
+        ]
+    },
+    {
+        "name": "CREATIVIDAD Y EMPRENDIMIENTO",
+        "course_number": "G04A",
+        "profesor": "ORIANA SUSANA MARTINEZ PALOMINO",
+        "faculty_id": "aemp",
+        "id": 62549,
+        "schedules": [
+            {
+                "day_of_week": "Miercoles",
+                "start_time": "07:00:00",
+                "end_time": "07:50:00"
+            },
+            {
+                "day_of_week": "Lunes",
+                "start_time": "13:00:00",
+                "end_time": "14:50:00"
+            }
+        ]
+    },
+    {
+        "name": "CREATIVIDAD Y EMPRENDIMIENTO",
+        "course_number": "G04A",
+        "profesor": "GABRIEL ROMAN MELENDEZ",
+        "faculty_id": "aemp",
+        "id": 63035,
+        "schedules": [
+            {
+                "day_of_week": "Jueves",
+                "start_time": "13:00:00",
+                "end_time": "13:50:00"
+            },
+            {
+                "day_of_week": "Martes",
+                "start_time": "15:00:00",
+                "end_time": "16:50:00"
+            }
+        ]
+    },
+    {
+        "name": "CREATIVIDAD Y EMPRENDIMIENTO",
+        "course_number": "G04A",
+        "profesor": "LINA MARGARITA MARRUGO SALAS",
+        "faculty_id": "aemp",
+        "id": 63404,
+        "schedules": [
+            {
+                "day_of_week": "Jueves",
+                "start_time": "08:00:00",
+                "end_time": "09:50:00"
+            },
+            {
+                "day_of_week": "Lunes",
+                "start_time": "14:00:00",
+                "end_time": "14:50:00"
+            }
+        ]
+    },
+    {
+        "name": "CREATIVIDAD Y EMPRENDIMIENTO",
+        "course_number": "G04A",
+        "profesor": "LINA MARGARITA MARRUGO SALAS",
+        "faculty_id": "aemp",
+        "id": 63530,
+        "schedules": [
+            {
+                "day_of_week": "Miercoles",
+                "start_time": "09:00:00",
+                "end_time": "09:50:00"
+            },
+            {
+                "day_of_week": "Jueves",
+                "start_time": "15:00:00",
+                "end_time": "16:50:00"
+            }
+        ]
+    },
+    {
+        "name": "ORGANIZACIONES I",
+        "course_number": "G05A",
+        "profesor": "RITA CECILIA DE LA HOZ DEL VILLAR",
+        "faculty_id": "aemp",
+        "id": 63230,
+        "schedules": [
+            {
+                "day_of_week": "Viernes",
+                "start_time": "13:00:00",
+                "end_time": "13:50:00"
+            },
+            {
+                "day_of_week": "Jueves",
+                "start_time": "14:00:00",
+                "end_time": "15:50:00"
+            }
+        ]
+    },
+    {
+        "name": "ORGANIZACIONES I",
+        "course_number": "G05A",
+        "profesor": "RITA CECILIA DE LA HOZ DEL VILLAR",
+        "faculty_id": "aemp",
+        "id": 63232,
+        "schedules": [
+            {
+                "day_of_week": "Martes",
+                "start_time": "15:00:00",
+                "end_time": "16:50:00"
+            },
+            {
+                "day_of_week": "Jueves",
+                "start_time": "16:00:00",
+                "end_time": "16:50:00"
+            }
+        ]
+    }
+]

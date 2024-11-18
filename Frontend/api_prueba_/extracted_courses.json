@@ -1,0 +1,245 @@
+[
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 62604,
+        "courseNumber": "G01A",
+        "NRC": "1171",
+        "courseTitle": "FUNDAMENTOS DE ADMINISTRACION",
+        "profesor": "MARTHA PATRICIA CASTRO PORTO",
+        "schedule": [
+            {
+                "days": [
+                    "Viernes"
+                ],
+                "start_time": "09:00",
+                "end_time": "10:50"
+            },
+            {
+                "days": [
+                    "Martes"
+                ],
+                "start_time": "16:00",
+                "end_time": "16:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 63125,
+        "courseNumber": "G02A",
+        "NRC": "1725",
+        "courseTitle": "SEMINARIO GERENCIAL I",
+        "profesor": "RICARDO ANDRES ABREO RODRIGUEZ",
+        "schedule": [
+            {
+                "days": [
+                    "Lunes"
+                ],
+                "start_time": "16:00",
+                "end_time": "16:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 62607,
+        "courseNumber": "G03A",
+        "NRC": "1175",
+        "courseTitle": "HISTORIA EMPRESARIAL",
+        "profesor": "MARIA TERESA RIPOLL DE LEMAITRE",
+        "schedule": [
+            {
+                "days": [
+                    "Lunes"
+                ],
+                "start_time": "07:00",
+                "end_time": "08:50"
+            },
+            {
+                "days": [
+                    "Jueves"
+                ],
+                "start_time": "10:00",
+                "end_time": "10:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 63818,
+        "courseNumber": "G03A",
+        "NRC": "2471",
+        "courseTitle": "HISTORIA EMPRESARIAL",
+        "profesor": "MARIA TERESA RIPOLL DE LEMAITRE",
+        "schedule": [
+            {
+                "days": [
+                    "Lunes"
+                ],
+                "start_time": "09:00",
+                "end_time": "09:50"
+            },
+            {
+                "days": [
+                    "Jueves"
+                ],
+                "start_time": "11:00",
+                "end_time": "12:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 62549,
+        "courseNumber": "G04A",
+        "NRC": "1116",
+        "courseTitle": "CREATIVIDAD Y EMPRENDIMIENTO",
+        "profesor": "ORIANA SUSANA MARTINEZ PALOMINO",
+        "schedule": [
+            {
+                "days": [
+                    "Miercoles"
+                ],
+                "start_time": "07:00",
+                "end_time": "07:50"
+            },
+            {
+                "days": [
+                    "Lunes"
+                ],
+                "start_time": "13:00",
+                "end_time": "14:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 63035,
+        "courseNumber": "G04A",
+        "NRC": "1629",
+        "courseTitle": "CREATIVIDAD Y EMPRENDIMIENTO",
+        "profesor": "GABRIEL ROMAN MELENDEZ",
+        "schedule": [
+            {
+                "days": [
+                    "Jueves"
+                ],
+                "start_time": "13:00",
+                "end_time": "13:50"
+            },
+            {
+                "days": [
+                    "Martes"
+                ],
+                "start_time": "15:00",
+                "end_time": "16:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 63404,
+        "courseNumber": "G04A",
+        "NRC": "2021",
+        "courseTitle": "CREATIVIDAD Y EMPRENDIMIENTO",
+        "profesor": "LINA MARGARITA MARRUGO SALAS",
+        "schedule": [
+            {
+                "days": [
+                    "Jueves"
+                ],
+                "start_time": "08:00",
+                "end_time": "09:50"
+            },
+            {
+                "days": [
+                    "Lunes"
+                ],
+                "start_time": "14:00",
+                "end_time": "14:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 63530,
+        "courseNumber": "G04A",
+        "NRC": "2154",
+        "courseTitle": "CREATIVIDAD Y EMPRENDIMIENTO",
+        "profesor": "LINA MARGARITA MARRUGO SALAS",
+        "schedule": [
+            {
+                "days": [
+                    "Miercoles"
+                ],
+                "start_time": "09:00",
+                "end_time": "09:50"
+            },
+            {
+                "days": [
+                    "Jueves"
+                ],
+                "start_time": "15:00",
+                "end_time": "16:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 63230,
+        "courseNumber": "G05A",
+        "NRC": "1834",
+        "courseTitle": "ORGANIZACIONES I",
+        "profesor": "RITA CECILIA DE LA HOZ DEL VILLAR",
+        "schedule": [
+            {
+                "days": [
+                    "Viernes"
+                ],
+                "start_time": "13:00",
+                "end_time": "13:50"
+            },
+            {
+                "days": [
+                    "Jueves"
+                ],
+                "start_time": "14:00",
+                "end_time": "15:50"
+            }
+        ]
+    },
+    {
+        "facultyName": "ADMINISTRACION DE EMPRESAS",
+        "facultyAbbr": "aemp",
+        "id": 63232,
+        "courseNumber": "G05A",
+        "NRC": "1836",
+        "courseTitle": "ORGANIZACIONES I",
+        "profesor": "RITA CECILIA DE LA HOZ DEL VILLAR",
+        "schedule": [
+            {
+                "days": [
+                    "Martes"
+                ],
+                "start_time": "15:00",
+                "end_time": "16:50"
+            },
+            {
+                "days": [
+                    "Jueves"
+                ],
+                "start_time": "16:00",
+                "end_time": "16:50"
+            }
+        ]
+    }
+]

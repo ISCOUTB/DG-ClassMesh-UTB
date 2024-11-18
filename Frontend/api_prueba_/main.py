@@ -1,112 +1,108 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
+from itertools import product
+from datetime import datetime
+import json
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
+
+# FastAPI app
 app = FastAPI()
-
-# Permitir solicitudes CORS
-origins = [
-    "http://localhost:8000",  # Flutter local
-    "http://127.0.0.1:8000",
-]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Permitir todas las solicitudes
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Permitir todos los métodos HTTP
+    allow_headers=["*"],  # Permitir todos los encabezados
 )
 
-# Base de datos simulada
-courses_db = {
-    "csb": [
-        {
-            "name": "Calculo",
-            "abbreviation": "cal",
-            "monday": True,
-            "tuesday": False,
-            "wednesday": True,
-            "thursday": False,
-            "friday": True,
-            "start_time": "08:00",
-            "end_time": "09:50"
-        },
-        {
-            "name": "Matematicas",
-            "abbreviation": "mat",
-            "monday": True,
-            "tuesday": True,
-            "wednesday": False,
-            "thursday": False,
-            "friday": True,
-            "start_time": "10:00",
-            "end_time": "11:50"
-        },
-        # Agrega más cursos según sea necesario
-    ],
-    "ing": [
-        {
-            "name": "Programacion",
-            "abbreviation": "prog",
-            "monday": True,
-            "tuesday": True,
-            "wednesday": True,
-            "thursday": False,
-            "friday": False,
-            "start_time": "12:00",
-            "end_time": "13:50"
-        },
-        # Agrega más cursos según sea necesario
-    ],
-    "hum": [
-        {
-            "name": "Historia",
-            "abbreviation": "hist",
-            "monday": False,
-            "tuesday": True,
-            "wednesday": False,
-            "thursday": True,
-            "friday": False,
-            "start_time": "14:00",
-            "end_time": "15:50"
-        },
-        # Agrega más cursos según sea necesario
-    ],
-}
-
-faculties_db = [
-    {"id": 1, "name": "Facultad de Ciencias Basicas", "abbreviation": "csb"},
-    {"id": 2, "name": "Facultad de Ingenieria", "abbreviation": "ing"},
-    {"id": 3, "name": "Facultad de Humanidades", "abbreviation": "hum"},
-]
+# Modelos de datos
+class Schedule(BaseModel):
+    days: List[str]  # Días de la semana: ["Lunes", "Miércoles"]
+    start_time: str  # Hora de inicio: "08:00"
+    end_time: str    # Hora de fin: "10:00"
 
 class Course(BaseModel):
-    name: str
-    abbreviation: str
-    monday: bool
-    tuesday: bool
-    wednesday: bool
-    thursday: bool
-    friday: bool
-    start_time: str  # Formato HH:MM
-    end_time: str    # Formato HH:MM
-
-class Faculty(BaseModel):
+    facultyName: str
+    facultyAbbr: str
     id: int
-    name: str
-    abbreviation: str
+    courseNumber: str
+    NRC: str
+    courseTitle: str
+    schedule: List[Schedule]
 
-@app.get("/faculties", response_model=List[Faculty])
-def get_faculties():
-    return faculties_db
+# Función para cargar los cursos desde el archivo JSON
+def cargar_cursos_desde_archivo(nombre_archivo: str) -> List[Course]:
+    with open(nombre_archivo, "r", encoding="utf-8") as file:
+        data = json.load(file)
+    return [Course(**course) for course in data]
 
-@app.get("/faculties/{faculty_abbr}/courses", response_model=List[Course])
-def get_courses(faculty_abbr: str):
-    # Comprobar si la abreviatura existe en la base de datos de cursos
-    if faculty_abbr in courses_db:
-        return courses_db[faculty_abbr]
-    else:
-        # Si la abreviatura no se encuentra, devolver error 404
-        raise HTTPException(status_code=404, detail="Faculty not found")
+# Función para verificar si dos horarios se solapan
+def horarios_se_solapan(horario1: Schedule, horario2: Schedule) -> bool:
+    # Verifica si comparten algún día
+    dias_comunes = set(horario1.days).intersection(horario2.days)
+    if not dias_comunes:
+        return False
+
+    # Convertir las horas a datetime para facilitar comparación
+    formato_hora = "%H:%M"
+    inicio1 = datetime.strptime(horario1.start_time, formato_hora)
+    fin1 = datetime.strptime(horario1.end_time, formato_hora)
+    inicio2 = datetime.strptime(horario2.start_time, formato_hora)
+    fin2 = datetime.strptime(horario2.end_time, formato_hora)
+
+    # Revisar si los horarios se solapan
+    return not (fin1 <= inicio2 or inicio1 >= fin2)
+
+# Función para verificar si una combinación de horarios es válida
+def es_combinacion_valida(combinacion: List[Schedule]) -> bool:
+    for i in range(len(combinacion)):
+        for j in range(i + 1, len(combinacion)):
+            if horarios_se_solapan(combinacion[i], combinacion[j]):
+                return False
+    return True
+
+# Función para generar combinaciones válidas
+def generar_combinaciones_validas(courses: List[Course]) -> List[List[Schedule]]:
+    # Obtén las posibles combinaciones de horarios de cada curso
+    posibles_horarios = [course.schedule for course in courses]
+    combinaciones = product(*posibles_horarios)  # Genera el producto cartesiano
+
+    combinaciones_validas = []
+    for combinacion in combinaciones:
+        # Verifica si hay conflictos entre los horarios de la combinación
+        if es_combinacion_valida(combinacion):
+            combinaciones_validas.append(combinacion)
+
+    return combinaciones_validas
+
+# Endpoint para generar combinaciones de horarios
+@app.get("/generate-combinations/")
+def generate_combinations():
+    # Cargar cursos desde el archivo JSON
+    nombre_archivo = "extracted_courses.json"
+    courses = cargar_cursos_desde_archivo(nombre_archivo)
+
+    # Generar combinaciones válidas
+    combinaciones_validas = generar_combinaciones_validas(courses)
+    
+    # Formatear la respuesta
+    return {
+        "total_combinations": len(combinaciones_validas),
+        "combinations": [
+            [
+                {
+                    "days": schedule.days, 
+                    "start_time": schedule.start_time, 
+                    "end_time": schedule.end_time
+                } 
+                for schedule in combinacion
+            ]
+            for combinacion in combinaciones_validas
+        ]
+    }

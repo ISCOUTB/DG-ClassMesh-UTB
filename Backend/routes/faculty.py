@@ -2,6 +2,7 @@ from fastapi import APIRouter,Depends
 from models import Faculty
 from schema import FacultyCreate, FacultyResponse
 from config.db import Session, get_db
+from fastapi import HTTPException
 
 
 router = APIRouter()

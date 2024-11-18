@@ -21,41 +21,74 @@ class _ClassMeshPreviewState extends State<ClassMeshPreview> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Eliminar horario?'),
-          content: Text(
-            '¿Estás seguro de que deseas eliminar "${_schedules[index]['name']}"? Esta acción no se puede deshacer.',
-          ),
+          title: const Text('Confirmar eliminación'),
+          content: const Text('¿Estás seguro de que deseas eliminar este horario?'),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
               child: const Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
             TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.red,
-              ),
+              child: const Text('Eliminar'),
               onPressed: () {
                 setState(() {
-                  // Eliminar el elemento de la lista
                   _schedules.removeAt(index);
-
-                  // Reorganizar los nombres para reflejar las nuevas posiciones
-                  for (int i = 0; i < _schedules.length; i++) {
-                    _schedules[i]['name'] = 'Horario #${i + 1}';
-                  }
                 });
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                'Eliminar',
-                style: TextStyle(color: Colors.white),
-              ),
             ),
           ],
         );
       },
     );
   }
+
+void showAddScheduleDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final TextEditingController scheduleNameController = TextEditingController();
+
+        return AlertDialog(
+          title: const Text('Agregar horario'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: scheduleNameController,
+                decoration: const InputDecoration(
+                  labelText: 'Nombre del horario',
+                ),
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Agregar'),
+              onPressed: () {
+                setState(() {
+                  _schedules.add({
+                    'name': scheduleNameController.text,
+                    'visible': true,
+                  });
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +223,11 @@ class _ClassMeshPreviewState extends State<ClassMeshPreview> {
             );
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: showAddScheduleDialog, // showAddScheduleDialog,
+        backgroundColor: const Color.fromARGB(255, 41, 107, 172),
+        child: const Icon(Icons.add),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class HorarioScreen extends StatefulWidget {
   const HorarioScreen({super.key});
 
@@ -75,14 +76,14 @@ List<Faculty> faculties = [
         color: Colors.green,
       ),
       Course(
-        courseTitle: "Sistemas Operativos",
-        abbreviation: "SO",
+        courseTitle: "Inteligencia Artificial",
+        abbreviation: "IA",
         schedule: [
+          Schedule(days: ["Martes"], startTime: "14:00", endTime: "16:00"),
           Schedule(days: ["Jueves"], startTime: "10:00", endTime: "12:00"),
-          Schedule(days: ["Viernes"], startTime: "14:00", endTime: "16:00"),
-          Schedule(days: ["Martes"], startTime: "12:00", endTime: "14:00"),
+          Schedule(days: ["Viernes"], startTime: "16:00", endTime: "18:00"),
         ],
-        color: Colors.blue,
+        color: Colors.red,
       ),
     ],
   ),
@@ -100,24 +101,14 @@ List<Faculty> faculties = [
         color: Colors.lime,
       ),
       Course(
-        courseTitle: "Ética",
-        abbreviation: "ETI",
+        courseTitle: "Sociología",
+        abbreviation: "SOC",
         schedule: [
-          Schedule(days: ["Martes"], startTime: "10:00", endTime: "12:00"),
-          Schedule(days: ["Jueves"], startTime: "11:00", endTime: "13:00"),
-          Schedule(days: ["Viernes"], startTime: "15:00", endTime: "17:00"),
+          Schedule(days: ["Martes"], startTime: "09:00", endTime: "11:00"),
+          Schedule(days: ["Jueves"], startTime: "14:00", endTime: "16:00"),
+          Schedule(days: ["Viernes"], startTime: "08:00", endTime: "10:00"),
         ],
-        color: Colors.indigo,
-      ),
-      Course(
-        courseTitle: "Comprensión Lectora",
-        abbreviation: "CLE",
-        schedule: [
-          Schedule(days: ["Viernes"], startTime: "14:00", endTime: "16:00"),
-          Schedule(days: ["Martes"], startTime: "12:00", endTime: "14:00"),
-          Schedule(days: ["Lunes"], startTime: "10:00", endTime: "12:00"),
-        ],
-        color: Colors.amber,
+        color: Colors.brown,
       ),
     ],
   ),
@@ -135,47 +126,37 @@ List<Faculty> faculties = [
         color: Colors.yellow,
       ),
       Course(
-        courseTitle: "Física Calor y Ondas",
-        abbreviation: "FICO",
+        courseTitle: "Física Mecánica",
+        abbreviation: "FIME",
         schedule: [
-          Schedule(days: ["Martes"], startTime: "08:00", endTime: "10:00"),
-          Schedule(days: ["Jueves"], startTime: "13:00", endTime: "15:00"),
-          Schedule(days: ["Viernes"], startTime: "11:00", endTime: "13:00"),
+          Schedule(days: ["Lunes"], startTime: "13:00", endTime: "15:00"),
+          Schedule(days: ["Jueves"], startTime: "10:00", endTime: "12:00"),
+          Schedule(days: ["Viernes"], startTime: "14:00", endTime: "16:00"),
         ],
-        color: Colors.teal,
-      ),
-      Course(
-        courseTitle: "Química General",
-        abbreviation: "QUIG",
-        schedule: [
-          Schedule(days: ["Lunes"], startTime: "14:00", endTime: "16:00"),
-          Schedule(days: ["Miércoles"], startTime: "08:00", endTime: "10:00"),
-          Schedule(days: ["Viernes"], startTime: "15:00", endTime: "17:00"),
-        ],
-        color: Colors.pink,
+        color: Colors.cyan,
       ),
     ],
   ),
   Faculty(
-    name: "Facultad de Humanidades de Lenguas Extranjeras",
+    name: "Facultad de Administración y Economía",
     courses: [
       Course(
-        courseTitle: "Inglés IV",
-        abbreviation: "ING4",
+        courseTitle: "Microeconomía",
+        abbreviation: "MICE",
         schedule: [
-          Schedule(days: ["Lunes"], startTime: "08:00", endTime: "10:00"),
-          Schedule(days: ["Miércoles"], startTime: "14:00", endTime: "16:00"),
-          Schedule(days: ["Viernes"], startTime: "12:00", endTime: "14:00"),
+          Schedule(days: ["Lunes"], startTime: "09:00", endTime: "11:00"),
+          Schedule(days: ["Miércoles"], startTime: "13:00", endTime: "15:00"),
+          Schedule(days: ["Jueves"], startTime: "11:00", endTime: "13:00"),
         ],
-        color: Colors.cyan,
+        color: Colors.pink,
       ),
       Course(
-        courseTitle: "Francés III",
-        abbreviation: "FR3",
+        courseTitle: "Contabilidad Financiera",
+        abbreviation: "CONTA",
         schedule: [
-          Schedule(days: ["Martes"], startTime: "10:00", endTime: "12:00"),
-          Schedule(days: ["Jueves"], startTime: "13:00", endTime: "15:00"),
-          Schedule(days: ["Viernes"], startTime: "09:00", endTime: "11:00"),
+          Schedule(days: ["Martes"], startTime: "12:00", endTime: "14:00"),
+          Schedule(days: ["Jueves"], startTime: "15:00", endTime: "17:00"),
+          Schedule(days: ["Viernes"], startTime: "08:00", endTime: "10:00"),
         ],
         color: Colors.purple,
       ),

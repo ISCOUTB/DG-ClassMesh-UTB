@@ -42,9 +42,18 @@ def create_course(course_data: CourseResponse, db: Session = Depends(get_db)): #
 def get_course(db: Session = Depends(get_db)):
     courses = db.query(Course).all()
     return courses
+
 @router.get("/courses/{course_number}", response_model=list[CourseResponse])
 async def get_course_by_number(course_number: str, db: Session = Depends(get_db)):
     course = db.query(Course).filter(Course.course_number == course_number).all()
     if course is None:
         raise HTTPException(status_code=404, detail="Course not found")
     return course
+
+
+@router.get("/faculty/{faculty_id}/courses", response_model=list[CourseResponse])
+async def get_courses_by_faculty(faculty_id: str, db: Session = Depends(get_db)):
+    courses = db.query(Course).filter(Course.faculty_id == faculty_id).all()
+    if courses is None:
+        raise HTTPException(status_code=404, detail="Courses not found")
+    return courses

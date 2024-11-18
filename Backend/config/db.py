@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from typing import Generator
 
 
-URL_DB = "postgresql://alvaro:jojo@localhost:5432/fastapi_dev"
+URL_DB = "postgresql://postgres:postgres@127.0.0.1:5432/postgres"
 engine = create_engine(URL_DB)
 
 SessionLocal = sessionmaker(autocommit = False,autoflush = False, bind = engine)
